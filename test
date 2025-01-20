@@ -33,6 +33,12 @@ ELK Stack:
 
 10) Elasticsearch: http://localhost:9200 - если работает, то видно JSON-ответ
 11) Kibana: http://localhost:5601
+Во вкладке "Analytics": В левом меню найти и кликнуть на вкладку "Analytics".
+"Discover": В открывшемся меню "Analytics" пункт "Discover".
+"Create a new index pattern".
+В поле "Name" ввести recipe-gateway-logs : Это имя будет отображаться в Kibana.
+В поле "Index pattern": В этом поле recipe-gateway-*.
+Поле времени: Выберите @timestamp в выпадающем списке и нажмите "Create index pattern".
 
 Prometheus:
 
@@ -42,6 +48,30 @@ Prometheus:
 Grafana:
 
 14) http://localhost:3000 (логин admin, пароль admin)
+
+Шаг 1: Открытие Prometheus:
+
+http://localhost:9091.
+
+Шаг 2: Проверка статуса цели gateway:
+
+В меню Prometheus "Status" -> "Targets".
+gateway (с адресом gateway:8080) находится в состоянии UP.
+
+Шаг 3: Открытие Grafana:
+
+Действие: http://localhost:3000.
+Действие: Логин admin и пароль admin.
+
+Шаг 4: Создание дашборда:
+
+На главной странице Grafana на кнопку "New" -> "Dashboard".
+"Add new panel".
+В разделе "Query", "Prometheus" в выпадающем списке "Data source".
+В поле ввода метрики (обычно находится под полем "Data source") ввести название метрик,
+например http_server_requests_seconds_count , и Grafana предложит варианты.
+"Apply". Появится график.
+
 PostgreSQL:
 15) http://localhost:5050 (логин admin@admin.com, пароль admin)
 
@@ -59,3 +89,9 @@ PostgreSQL:
 19) docker-compose down
 20) docker-compose build --no-cache
 21) docker-compose up -d
+
+Кэширования Redis:
+
+22) GET-запрос на получение списка сотрудников /api/v1/employees.
+23) Тот же GET-запрос.
+24) Второй запрос выполняется быстрее, чем первый, так как данные должны быть взяты из Redis-кэша.
