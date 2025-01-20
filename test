@@ -1,0 +1,61 @@
+1) docker-compose build --no-cache и docker-compose up -d
+
+API:
+
+2) GET-запрос на http://localhost:8080/api/v1/employees
+3) POST-запрос на http://localhost:8080/api/v1/employees
+{
+  "name": "Иван Иванов",
+  "position": "Разработчик",
+  "salary": 120000.00,
+   "hireDate": "2024-02-15"
+}
+4) PUT-запрос на http://localhost:8080/api/v1/employees/{id}
+{
+    "name": "Петр Петров",
+    "position": "Старший разработчик",
+    "salary": 180000.00,
+     "hireDate": "2023-09-01"
+}
+5) DELETE-запрос на http://localhost:8080/api/v1/employees/{id}
+
+gRPC:
+
+6) docker logs gateway
+7) поиск слова gRPC
+8) Gateway правильно вызывает gRPC-методы Domain-сервиса если они есть
+
+RabbitMQ:
+
+9) http://localhost:15672 (логин guest, пароль guest)
+
+ELK Stack:
+
+10) Elasticsearch: http://localhost:9200 - если работает, то видно JSON-ответ
+11) Kibana: http://localhost:5601
+
+Prometheus:
+
+12) http://localhost:9091 и перейдите в Status -> Targets
+13) цель gateway:8080 имеет статус UP
+
+Grafana:
+
+14) http://localhost:3000 (логин admin, пароль admin)
+PostgreSQL:
+15) http://localhost:5050 (логин admin@admin.com, пароль admin)
+
+PostgreSQL:
+
+16) http://localhost:5050 (логин admin@admin.com, пароль admin)
+17) docker-compose down -v для удаления бд
+18) docker-compose up -d
+19) Сервер, используя следующие данные:
+    Host name/address: postgres (имя контейнера Postgres)
+    Port: 5432
+    Username: postgres
+    Password: password
+    Database: employee
+19) docker-compose down
+20) docker-compose build --no-cache
+21) docker-compose up -d
